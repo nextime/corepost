@@ -212,7 +212,7 @@ class RequestRouter:
                 self.__filterRequests(request)
 
             # standardize URL and remove trailing "/" if necessary
-            standardized_postpath = request.postpath if (request.postpath[-1] != '' or request.postpath == ['']) else request.postpath[:-1]
+            standardized_postpath = request.postpath if (len(request.postpath)==0 or request.postpath[-1] != '' or request.postpath == ['']) else request.postpath[:-1]
             path = '/'.join(standardized_postpath) 
 
             contentType =  MediaType.WILDCARD if HttpHeader.CONTENT_TYPE not in request.received_headers else request.received_headers[HttpHeader.CONTENT_TYPE]       
